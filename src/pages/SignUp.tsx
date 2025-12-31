@@ -1,10 +1,12 @@
 import React, { useState, type ChangeEvent } from "react";
-import { IoEyeOff, IoPersonOutline } from "react-icons/io5";
+import { IoPersonOutline } from "react-icons/io5";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-import ChoseStack from "../components/ChoseStack";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signUp } from "../utils/Api";
+import { toast } from "sonner";
+import Stacks from "../components/Stacks";
 
-const CreateAccount: React.FC = () => {
+const SignUp = () => {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [showPass, setShowPass] = React.useState(false);
@@ -15,22 +17,23 @@ const CreateAccount: React.FC = () => {
   const handlePasswordChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(e.target.value);
   };
-  const [image, setImage] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const defaultImage = "/images/download.png"
+  // const [image, setImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(defaultImage);
   const [value, setValue] = useState({
-    profilePhoto: "",
     name: "",
     email: "",
     stack: "",
     password: "",
     passwordConfirm: "",
   });
+  const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
 
   // Handle file input change and create preview URL
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(file);
+      // setImage(file);
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
     }
@@ -39,13 +42,47 @@ const CreateAccount: React.FC = () => {
     setValue((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-      profilePhoto: e.target.files
-        ? e.target.files[0].name
-        : prevState.profilePhoto,
     }));
-    const stackValue = (e.target as HTMLInputElement).value;
-    console.log(value);
   };
+
+  function setStack(stack: string) {
+    setValue({ ...value, stack: stack });
+
+  }
+  console.log("Updated value object:", value);
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const formData = new FormData();
+    Object.entries(value).forEach(([key, val]) => {
+      if (val) formData.append(key, val);
+    });
+      if (!profilePhoto) {
+        const response = await fetch(defaultImage);
+        const blob = await response.blob();
+        const file = new File([blob], "/images/download.jpg", {
+          type: blob.type,
+        });
+        formData.append("profilePhoto", file);
+      } else {
+        formData.append("profilePhoto", profilePhoto);
+      }
+
+    // if (profilePhoto) {
+    //   formData.append("profilePhoto", profilePhoto);
+    // }
+    const res = await signUp(formData);
+    console.log("🚀 ~ handleSubmit ~ res:", res);
+    if (res) {
+      localStorage.setItem("token", res.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      toast.success("Account created successfully!");
+      navigate("/dashboard");
+    } else {
+      toast.error("Failed to create account. Please try again.");
+    }
+  }
 
   return (
     <>
@@ -59,7 +96,11 @@ const CreateAccount: React.FC = () => {
               Fill in the details to create an account
             </p>
           </div>
-          <div className="w-4/5 sm:w-2/4 md:w-1/3 flex flex-col gap-2 sm:gap-4 relative">
+          <form
+            action="#"
+            encType="multipart/form-data"
+            className="w-4/5 sm:w-2/4 md:w-1/3 flex flex-col gap-2 sm:gap-4 relative"
+          >
             <div className="bg-gray-50 size-18 sm:size-20 md:size-22 mx-auto text-center border border-gray-500 rounded-full outline-none cursor-pointer relative flex justify-center items-center">
               {previewUrl ? (
                 <img
@@ -74,7 +115,7 @@ const CreateAccount: React.FC = () => {
                 <input
                   onChange={(e) => {
                     handleImageChange(e);
-                    handleChangeValue(e);
+                    setProfilePhoto(e.target.files ? e.target.files[0] : null);
                   }}
                   type="file"
                   name="profilePicture"
@@ -86,8 +127,8 @@ const CreateAccount: React.FC = () => {
             <input
               onChange={handleChangeValue}
               type="text"
-              name="fullName"
-              id="fullName"
+              name="name"
+              id="name"
               placeholder="Full Name"
               className="w-full border border-gray-500 mt-2 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
             />
@@ -124,8 +165,8 @@ const CreateAccount: React.FC = () => {
                 handlePasswordChange2(e);
               }}
               type={confirmShowPass ? "text" : "password"}
-              name="confirmPassword"
-              id="confirmPassword"
+              name="passwordConfirm"
+              id="passwordConfirm"
               value={confirmPassword}
               placeholder="Confirm Password"
               className="w-full border border-gray-500 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
@@ -137,13 +178,17 @@ const CreateAccount: React.FC = () => {
               {confirmShowPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
             </span>
             <div>
-              <ChoseStack setValue={setValue} />
+              <Stacks setStack={setStack} />
             </div>
-          </div>
-          <div className="w-full flex flex-col gap-4 items-center">
-            <button className="w-1/2 sm:w-1/3 md:w-1/5 py-1.5 sm:py-2 border border-gray-500 rounded-xl cursor-pointer hover:bg-gray-200 text-sm text-gray-600">
-              <Link to="/dashboard">Sign up</Link>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="mx-auto w-1/2 mt-2 py-1.5 sm:py-2 border border-gray-500 rounded-xl cursor-pointer hover:bg-gray-200 text-sm text-gray-600"
+            >
+              Sign up
             </button>
+          </form>
+          <div className="w-full flex flex-col gap-4 items-center">
             <p className="text-gray-600 text-sm">
               Already have an account?{" "}
               <Link
@@ -160,4 +205,4 @@ const CreateAccount: React.FC = () => {
   );
 };
 
-export default CreateAccount;
+export default SignUp;

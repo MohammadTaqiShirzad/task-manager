@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Label,
   Listbox,
@@ -11,28 +11,50 @@ import {
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { BsChevronExpand } from "react-icons/bs";
 import { cn } from "../utils/cn";
+import { trainers } from "../utils/Api";
 
-const people = [
-  { id: 1, name: "Wade Cooper" },
-  { id: 2, name: "Arlene Mccoy" },
-  { id: 3, name: "Devon Webb" },
-  { id: 4, name: "Tom Cook" },
-  { id: 5, name: "Tanya Fox" },
-  { id: 6, name: "Hellen Schmidt" },
-  { id: 7, name: "Caroline Schultz" },
-  { id: 8, name: "Mason Heaney" },
-  { id: 9, name: "Claudie Smitham" },
-  { id: 10, name: "Emil Schaefer" },
-];
+type Trainer = {
+  _id: string;
+  name: string;
+};
+type MentorsProps = {
+  classes?: string;
+  setMentor: (mentor: string) => void;
+};
 
-export default function Mentors({ classes }: { classes?: string }) {
-  const [selected, setSelected] = useState(people[3]);
+export default function Mentors({ classes, setMentor }: MentorsProps) {
+  const [trainer, setTrainer] = useState<Trainer[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selected, setSelected] = useState<Trainer | null>(null);
 
+  useEffect(() => {
+    const fetchTrainers = async () => {
+      try {
+        const data = await trainers();
+        setTrainer(data);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load my reports.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTrainers();
+  }, []);
+
+  if (loading) return <p className="p-4">Loading my reports...</p>;
+  if (error) return <p className="p-4 text-red-500">{error}</p>;
   return (
-    <Listbox value={selected} onChange={setSelected}>
-      <Label className="text-sm font-medium text-gray-900">
-        Mentor:
-      </Label>
+    <Listbox
+      value={selected}
+      onChange={(value) => {
+        setSelected(value);
+        if (value) setMentor(value?._id);
+      }}
+    >
+      <Label className="text-sm font-medium text-gray-900">Mentor:</Label>
       <div className="relative w-full">
         <ListboxButton
           className={cn(
@@ -41,7 +63,7 @@ export default function Mentors({ classes }: { classes?: string }) {
           )}
         >
           <span className="col-start-1 row-start-1 truncate pr-6">
-            {selected.name}
+            {selected ? selected.name : "Select mentor"}
           </span>
           <BsChevronExpand className="col-start-1 row-start-1 self-center justify-self-end text-gray-500 sm:size-4" />
         </ListboxButton>
@@ -50,18 +72,19 @@ export default function Mentors({ classes }: { classes?: string }) {
           transition
           className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg outline-1 outline-black/5 data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
         >
-          {people.map((person) => (
-            <ListboxOption
-              key={person.id}
-              value={person}
-              className="w-full group cursor-pointer py-4 px-6 text-gray-900 select-none data-focus:bg-gray-800 data-focus:text-white data-focus:outline-hidden flex items-center rounded-md "
-            >
-              <IoIosCheckmarkCircleOutline className="size-4 mr-2  text-indigo-600 group-not-data-selected:hidden group-data-focus:text-white" />{" "}
-              <span className=" truncate font-normal group-data-selected:font-semibold">
-                {person.name}
-              </span>
-            </ListboxOption>
-          ))}
+          {Array.isArray(trainer) &&
+            trainer.map((tr: Trainer) => (
+              <ListboxOption
+                key={tr._id}
+                value={tr}
+                className="w-full group cursor-pointer py-4 px-6 text-gray-900 select-none data-focus:bg-gray-800 data-focus:text-white data-focus:outline-hidden flex items-center rounded-md "
+              >
+                <IoIosCheckmarkCircleOutline className="size-4 mr-2  text-indigo-600 group-not-data-selected:hidden group-data-focus:text-white" />{" "}
+                <span className=" truncate font-normal group-data-selected:font-semibold">
+                  {tr.name}
+                </span>
+              </ListboxOption>
+            ))}
         </ListboxOptions>
       </div>
     </Listbox>

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import WelcomePage from "./pages/Welcome";
-import SignInPage from "./pages/SignIn";
-import CreateAccountPage from "./pages/CreateAccount";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboards from "./dassboard/Dashboards";
-import Reports from "./components/Reports";
-import MyTask from "./components/MyTask";
 import LogoutConfirm from "./components/LogoutConfirm";
 import Loader from "./components/Loader";
+import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
+import Welcome from "./pages/Welcome";
+import SignIn from "./pages/SignIn";
+import MyTask from "./pages/MyTask";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -23,13 +22,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/account" element={<CreateAccountPage />} />
-          <Route path="/dashboard" element={<Dashboards />} />
-          <Route path="/reports" element={<Reports />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mytask" element={<MyTask />} />
-          <Route path="/logouted" element={<LogoutConfirm />} />
+          <Route path="/logout" element={<LogoutConfirm />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const LogoutConfirm = () => {
@@ -9,7 +8,7 @@ const LogoutConfirm = () => {
           <h3 className="text-3xl text-gray-600 mb-2">You Log Out!</h3>
           <span className="text-gray-700">
             creat a new{" "}
-            <Link to="/account" className="text-blue-700 ">
+            <Link to="/signup" className="text-blue-700 ">
               account
             </Link>
           </span>

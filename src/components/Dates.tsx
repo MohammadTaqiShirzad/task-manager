@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { CiBellOn } from "react-icons/ci";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -13,31 +12,14 @@ function addDays(date: Date, amount: number) {
 const Dates = () => {
   const today = new Date();
 
-  // شروع نوار (نه هفته!)
   const [startDate, setStartDate] = useState<Date>(addDays(today, -3));
 
   const [selectedDate, setSelectedDate] = useState<Date>(today);
 
-  // 7 روز پشت سر هم
   const dates = Array.from({ length: 7 }, (_, i) => addDays(startDate, i));
 
   return (
-    <div className=" flex flex-col gap-4 overflow-hidden">
-      <div className="flex gap-8 items-center justify-end ">
-        <div className="flex gap-4 items-center">
-          <div className="flex gap-4 items-center justify-evenly border border-gray-500 rounded-xl sm:py-0.5 px-4 shadow-md shadow-gray-300">
-            <h3>Ali Ahmadi</h3>
-            <img
-              src="/images/milr969373561.jpg"
-              alt=""
-              className="size-8 sm:size-9 rounded-full"
-            />
-          </div>
-          <div className="">
-            <CiBellOn className="size-8 sm:size-10 border border-gray-500 rounded-xl shadow-md shadow-gray-300" />
-          </div>
-        </div>
-      </div>
+    <div className=" flex flex-col gap-4 overflow-hidden rounded-xl shadow-md shadow-gray-300">
       <div className="w-full flex items-center lg:gap-1 border rounded-xl shadow-md py-1 lg:px-4 lg:py-3">
         {/* Left */}
         <button
@@ -52,8 +34,7 @@ const Dates = () => {
           {dates.map((date, i) => {
             const isSelected =
               date.toDateString() === selectedDate.toDateString();
-              const currentDate =
-              date.toDateString() === today.toDateString();
+            const currentDate = date.toDateString() === today.toDateString();
 
             return (
               <button

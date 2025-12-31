@@ -5,46 +5,47 @@ import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 import { cn } from "../utils/cn";
 
-const ChoseStack: React.FC = () => {
+const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
   const stackOptions = [
     {
       label: "Frontend Developer",
-      value: "frontend",
+      value: "Front-end Developer",
       className: "sm:rounded-tl-xl sm:rounded-bl-xl",
     },
     {
       label: "Backend Developer",
-      value: "backend",
+      value: "Back-end Developer",
       className: "sm:rounded-tr-xl sm:rounded-br-xl",
     },
     {
       label: "Fullstack Developer",
-      value: "fullstack",
+      value: "Full-stack Developer",
       className: "sm:rounded-tl-xl sm:rounded-bl-xl",
     },
     {
       label: "UI/UX Designer",
-      value: "uiux",
+      value: "UI/UX Designer",
       className: "sm:rounded-tr-xl sm:rounded-br-xl",
     },
     {
       label: "Mobile Developer",
-      value: "mobile",
+      value: "Mobile",
       className: "sm:rounded-tl-xl sm:rounded-bl-xl",
     },
     {
       label: "Media",
-      value: "media",
+      value: "Media",
       className: "sm:rounded-tr-xl sm:rounded-br-xl",
     },
   ];
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
-  console.log(selectedValue);
+  // console.log(selectedValue);
 
   return (
     <div>
       <button
+        type="button"
         onClick={() => setOpen(true)}
         className="w-full border border-gray-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm text-gray-700 text-start hover:bg-gray-950/10 cursor-pointer flex items-center justify-between"
       >
@@ -73,19 +74,25 @@ const ChoseStack: React.FC = () => {
                     </p>
                   </div>
                   <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
-                    {stackOptions.map((option) => (
-                      <button
-                        key={option.value}
-                        onClick={() => setSelectedValue(option.value)}
-                        className={cn(
-                          "border border-gray-500 rounded-none px-3 py-2 text-sm text-gray-800 hover:bg-gray-950/10 cursor-pointer flex items-center gap-1",
-                          option.className
-                        )}
-                      >
-                        <GoCheckCircle />
-                        {option.label}
-                      </button>
-                    ))}
+                    {stackOptions.map((option) => {
+                      return (
+                        <button
+                          type="button"
+                          key={option.value}
+                          onClick={() => {
+                            setSelectedValue(option.value);
+                            setStack(option.value);
+                          }}
+                          className={`${cn(
+                            "border border-gray-500 rounded-none px-3 py-2 text-sm text-gray-800 hover:bg-gray-950/10 cursor-pointer flex items-center gap-1",
+                            option.className
+                          )}`}
+                        >
+                          <GoCheckCircle />
+                          {option.label}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -118,4 +125,4 @@ const ChoseStack: React.FC = () => {
     </div>
   );
 };
-export default ChoseStack;
+export default Stacks;

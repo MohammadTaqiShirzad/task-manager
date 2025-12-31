@@ -42,11 +42,10 @@ export default function SideBar() {
         <div className="h-screen w-screen bg-gray-900 rounded-tr-3xl rounded-br-3xl lg:rounded-2xl flex flex-col gap-4 p-4 shadow-md shadow-gray-300 object-cover">
           <div className="w-full mx-auto flex gap-4 items-center justify-center text-white font-semibold border-b py-4 px-8">
             <img
-              src="/images/milr969373561.jpg"
+              src="/images/logo mars-01.png"
               alt=""
-              className="size-12 rounded-full"
-            />{" "}
-            ali ahmadi
+              className=""
+            />
           </div>
           <ul className="w-full text-white flex flex-col gap-4">
             {sideBarLinks.map((link) => (

@@ -8,8 +8,9 @@ type MyReportProps = {
 const LogOut = ({ isOpen, cancelLogout }: MyReportProps) => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.clear();
-    navigate("/logouted");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/logout");
   };
   return (
     isOpen && (
