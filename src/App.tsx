@@ -1,17 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LogoutConfirm from "./components/LogoutConfirm";
+import { useEffect, useState } from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
+
 import Loader from "./components/Loader";
-import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
+import LogoutConfirm from "./components/LogoutConfirm";
+
 import Welcome from "./pages/Welcome";
+import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import Dashboard from "./pages/Dashboard";
 import MyTask from "./pages/MyTask";
+
+import { useLoginUser } from "./utils/authContext";
+
+/* protected layout */
+const ProtectedLayout = () => {
+  const { hasToken } = useLoginUser();
+
+  if (!hasToken) {
+    return <Navigate to="/signin" replace />;
+  }
+
+  return <Outlet />;
+};
+
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // simulate page load
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
@@ -19,18 +40,21 @@ function App() {
   if (loading) return <Loader />;
 
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
+    <BrowserRouter>
+      <Routes>
+        {/* public routes */}
+        <Route path="/" element={<Welcome />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+
+        {/* protected routes */}
+        <Route element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mytask" element={<MyTask />} />
           <Route path="/logout" element={<LogoutConfirm />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

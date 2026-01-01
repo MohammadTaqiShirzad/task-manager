@@ -2,3 +2,7 @@
 .wrapper {
   @apply flex flex-col items-center justify-center min-h-screen bg-gray-100;
 }   
+.date-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1) sepia(100%) saturate(500%) hue-rotate(200deg);
+}

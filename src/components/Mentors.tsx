@@ -77,7 +77,7 @@ export default function Mentors({ classes, setMentor }: MentorsProps) {
               <ListboxOption
                 key={tr._id}
                 value={tr}
-                className="w-full group cursor-pointer py-4 px-6 text-gray-900 select-none data-focus:bg-gray-800 data-focus:text-white data-focus:outline-hidden flex items-center rounded-md "
+                className="w-full group cursor-pointer py-2 px-6 text-gray-900 select-none data-focus:bg-gray-800 data-focus:text-white data-focus:outline-hidden flex items-center rounded-md "
               >
                 <IoIosCheckmarkCircleOutline className="size-4 mr-2  text-indigo-600 group-not-data-selected:hidden group-data-focus:text-white" />{" "}
                 <span className=" truncate font-normal group-data-selected:font-semibold">

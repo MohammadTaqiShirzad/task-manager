@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 import { getReports } from "../utils/Api";
 import { useDate } from "../utils/date-context";
 import { SearchContext } from "../utils/search-context";
+import CreateReport from "./CreateReport";
+
 
 export type UserRef = {
   _id: string;
@@ -28,6 +30,8 @@ const Reports = () => {
     ? new Date(date).toISOString().split("T")[0]
     : undefined;
 
+  const [selectedReport, setSelectedReport] = useState<Report | null>(null);
+  const [open, setOpen] = useState(false);
   const [reportsData, setReportsData] = useState<Report[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -52,7 +56,6 @@ const Reports = () => {
 
   if (loading) return <p className="p-4">Loading reports...</p>;
   if (error) return <p className="p-4 text-red-500">{error}</p>;
-  console.log("TOKEN:", localStorage.getItem("token"));
   const q = (searchCtx?.query || "").trim().toLowerCase();
   const filtered = q
     ? reportsData.filter((row) => {
@@ -92,9 +95,13 @@ const Reports = () => {
           return (
             <tr
               key={row._id}
-              className="border-b border-gray-300 text-sm text-gray-700"
+              onClick={() => {
+                setSelectedReport(row);
+                setOpen(true);
+              }}
+              className="border-b border-gray-300 text-sm text-gray-700 cursor-pointer"
             >
-              <td className="max-sm:px-4 py-3 sm:pl-4 flex items-center gap-2 mr-4 lg:mr-0">
+              <td className="max-lg:px-8 py-3 sm:pl-4 flex items-center gap-2 mr-4 lg:mr-0">
                 <img
                   src={row.creator.profilePhoto}
                   alt=""
@@ -107,11 +114,18 @@ const Reports = () => {
               <td className="max-sm:px-4 mr-4 lg:mr-0">{row.trainer?.name}</td>
               <td className="max-sm:px-4 mr-4 lg:mr-0">{formatTask}</td>
               <td className="text-center max-sm:px-4 ">{formatReport}</td>
-              <td className="max-sm:px-4 flex gap-1 text-xl justify-center items-center "></td>
             </tr>
           );
         })
       )}
+      <CreateReport
+        isOpen={open}
+        report={selectedReport}
+        setOpen={() => {
+          setOpen(false);
+          setSelectedReport(null);
+        }}
+      />
     </>
   );
 };

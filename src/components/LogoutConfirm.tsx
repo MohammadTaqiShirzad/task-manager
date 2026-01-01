@@ -16,7 +16,7 @@ const LogoutConfirm = () => {
             to="/signin"
             className="text-gray-600 py-2 px-16 rounded-xl border border-gray-500 shadow-md shadow-gray-300"
           >
-            Sign Up
+            Sign In
           </Link>
         </div>
       </div>

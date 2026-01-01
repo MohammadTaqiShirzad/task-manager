@@ -10,7 +10,7 @@ const Search = () => {
       <LuSearch />
       <input
         type="text"
-        placeholder="Search reports, names, tasks..."
+        placeholder="Search "
         className="w-full outline-0 bg-transparent"
         value={query}
         onChange={(e) => setQuery(e.target.value)}

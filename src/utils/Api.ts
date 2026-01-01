@@ -1,11 +1,9 @@
 import type { ReportForm } from "../components/CreateReport";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
-// const token = JSON.parse(localStorage.getItem("token") || "");
-// const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 async function authFetch(endpoint: string, options: RequestInit = {}) {
-  let token = localStorage.getItem("token") ?? localStorage.getItem("TOKEN");
+  let token = localStorage.getItem("token");
 
   if (!token) {
     throw new Error("No token found");
@@ -27,11 +25,6 @@ async function authFetch(endpoint: string, options: RequestInit = {}) {
   return text ? JSON.parse(text) : true;
 }
 
-// reports
-// type reportsInput = {
-//   date?: Date;
-//   search?: string;
-// };
 
 export async function getReports(date?: string) {
   try {

@@ -18,7 +18,6 @@ const SignUp = () => {
     setConfirmPassword(e.target.value);
   };
   const defaultImage = "/images/download.png"
-  // const [image, setImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(defaultImage);
   const [value, setValue] = useState({
     name: "",
@@ -68,13 +67,10 @@ const SignUp = () => {
       } else {
         formData.append("profilePhoto", profilePhoto);
       }
-
-    // if (profilePhoto) {
-    //   formData.append("profilePhoto", profilePhoto);
-    // }
     const res = await signUp(formData);
     console.log("🚀 ~ handleSubmit ~ res:", res);
     if (res) {
+      localStorage.removeItem("token")
       localStorage.setItem("token", res.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       toast.success("Account created successfully!");
