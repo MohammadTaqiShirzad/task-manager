@@ -1,6 +1,4 @@
 import Skeleton from "react-loading-skeleton";
-import React from "react";
-
 const LoaderReport = () => {
   return (
     <>
