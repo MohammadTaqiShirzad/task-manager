@@ -14,7 +14,7 @@ const LogoutConfirm = () => {
           </span>
           <Link
             to="/signin"
-            className="text-gray-600 py-2 px-16 rounded-xl border border-gray-300 shadow-md shadow-gray-300"
+            className="text-gray-600 py-2 px-16 rounded-xl border border-gray-300 shadow-md shadow-gray-300 cursor-pointer"
           >
             Sign In
           </Link>

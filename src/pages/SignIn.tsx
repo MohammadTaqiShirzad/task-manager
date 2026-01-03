@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { toast } from "sonner";
 import { signIn } from "../utils/Api";
+import { useLoginUser } from "../utils/authContext";
 
 type TSignIn = {
   email: string;
@@ -27,6 +28,8 @@ const SignIn = () => {
   };
   console.log(value);
   const navigate = useNavigate();
+  const { setHasToken } = useLoginUser();
+
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,6 +37,8 @@ const SignIn = () => {
     if (res) {
       localStorage.setItem("token", res.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
+      setHasToken(true); 
+      navigate("/dashboard"); 
       toast.success("Signed In successfully!");
       navigate("/dashboard");
     } else {

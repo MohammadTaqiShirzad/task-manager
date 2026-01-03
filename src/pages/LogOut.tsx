@@ -26,14 +26,14 @@ const LogOut = ({ isOpen, cancelLogout }: MyReportProps) => {
             <div className="w-full flex gap-2 justify-between items-center">
               <button
                 type="button"
-                className="py-2 px-6 rounded-xl shadow shadow-gray-300"
+                className="py-2 px-6 rounded-xl shadow shadow-gray-300 cursor-pointer"
                 onClick={cancelLogout}
               >
                 Cancel
               </button>
               <button
                 onClick={handleLogout}
-                className="py-2 px-6 rounded-xl shadow shadow-gray-300 bg-gray-600 text-white flex gap-2 items-center"
+                className="py-2 px-6 rounded-xl shadow shadow-gray-300 bg-gray-600 text-white flex gap-2 items-center cursor-pointer"
               >
                 <span>Yes</span> <GoCheckCircle />
               </button>

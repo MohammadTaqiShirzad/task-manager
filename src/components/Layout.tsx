@@ -36,7 +36,7 @@ export default function Layout({ children }: LayoutProps) {
                 onClick={() => setOpen(!open)}
                 className="bg-gray-800 text-white text-4xl rounded-xl fixed right-0 bottom-0 p-1 mb-4 mr-12 shadow-md shadow-gray-300 transition:duration-300 hover:bg-gray-900"
               >
-                <BsPlusLg />
+                <BsPlusLg className="cursor-pointer"/>
               </button>
               <CreateReport isOpen={open} setOpen={() => setOpen(false)} />
               

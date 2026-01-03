@@ -1,20 +1,22 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 type SimpleAuthContextType = {
   hasToken: boolean;
+  setHasToken: (value: boolean) => void;
 };
 
 const AuthContext = createContext<SimpleAuthContextType | null>(null);
 
-export const AuthProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const token = localStorage.getItem("token");
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [hasToken, setHasToken] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setHasToken(!!token);
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ hasToken: !!token }}>
+    <AuthContext.Provider value={{ hasToken, setHasToken }}>
       {children}
     </AuthContext.Provider>
   );
@@ -24,7 +26,7 @@ export const AuthProvider = ({
 export const useLoginUser = () => {
   const ctx = useContext(AuthContext);
   if (!ctx) {
-    throw new Error("useAuth must be used inside SimpleAuthProvider");
+    throw new Error("useLoginUser must be used inside AuthProvider");
   }
   return ctx;
 };

@@ -23,7 +23,7 @@ const Dates = () => {
       <div className="w-full flex items-center lg:gap-1 border border-gray-300 rounded-xl shadow-md py-1 lg:px-4 lg:py-3">
         {/* Left */}
         <button
-          className="p-2 rounded-full hover:bg-gray-100"
+          className="p-2 rounded-full hover:bg-gray-100 cursor-pointer"
           onClick={() => setStartDate(addDays(startDate, -1))}
         >
           <BsChevronLeft />
@@ -64,7 +64,7 @@ const Dates = () => {
 
         {/* Right */}
         <button
-          className="p-2 rounded-full hover:bg-gray-100"
+          className="p-2 rounded-full hover:bg-gray-100 cursor-pointer"
           onClick={() => setStartDate(addDays(startDate, 1))}
         >
           <BsChevronRight />
