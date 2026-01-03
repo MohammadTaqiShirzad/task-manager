@@ -62,7 +62,7 @@ const SignIn = () => {
               id="email"
               placeholder="E-mail"
               onChange={handleChangeValue}
-              className="w-full border border-gray-500 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
             />
             <input
               type={showPass ? "text" : "password"}
@@ -74,7 +74,7 @@ const SignIn = () => {
                 handleChangeValue(e);
               }}
               placeholder="Password"
-              className="w-full border border-gray-500 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm "
+              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm "
             />
             <span
               className="size-6 absolute right-2 top-17 sm:right-4 sm:top-20 mt-0.5 text-gray-500 cursor-pointer"
@@ -85,7 +85,7 @@ const SignIn = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="w-1/2 mx-auto text-gray-500 py-1.5 sm:py-2 border border-gray-500 rounded-xl cursor-pointer hover:bg-gray-200 text-sm"
+              className="w-1/2 mx-auto text-gray-500 py-1.5 sm:py-2 border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-200 text-sm"
             >
               Sign in
             </button>

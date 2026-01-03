@@ -20,7 +20,7 @@ const Dates = () => {
 
   return (
     <div className=" flex flex-col gap-4 overflow-hidden rounded-xl shadow-md shadow-gray-300">
-      <div className="w-full flex items-center lg:gap-1 border rounded-xl shadow-md py-1 lg:px-4 lg:py-3">
+      <div className="w-full flex items-center lg:gap-1 border border-gray-300 rounded-xl shadow-md py-1 lg:px-4 lg:py-3">
         {/* Left */}
         <button
           className="p-2 rounded-full hover:bg-gray-100"

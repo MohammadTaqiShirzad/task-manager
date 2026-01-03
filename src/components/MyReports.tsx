@@ -3,6 +3,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { myReports, deleteReport } from "../utils/Api";
 import { SearchContext } from "../utils/search-context";
 import CreateReport from "./CreateReport";
+import LoaderReport from "./LoaderReport";
 
 export type UserRef = {
   _id: string;
@@ -47,8 +48,9 @@ const MyReports = () => {
     fetchReports();
   }, []);
   console.log(myReportsData);
+  console.log(localStorage.getItem("token"));
 
-  if (loading) return <p className="p-4">Loading my reports...</p>;
+  if (loading) return <LoaderReport/>;
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   const q = (searchCtx?.query || "").trim().toLowerCase();
@@ -95,7 +97,8 @@ const MyReports = () => {
       {filtered.length === 0 ? (
         <tr>
           <td colSpan={7} className="p-4 text-center text-gray-500">
-            No reports found.
+            <span>No my reports found.</span>
+            <img src="/images/no-data.svg" alt="" className="w-full h-72" />
           </td>
         </tr>
       ) : (

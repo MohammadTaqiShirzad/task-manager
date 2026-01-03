@@ -40,7 +40,7 @@ export default function Layout({ children }: LayoutProps) {
               </button>
               <CreateReport isOpen={open} setOpen={() => setOpen(false)} />
               
-              <div className="w-full  mx-auto border rounded-xl shadow-lg shadow-gray-300 overflow-hidden ">
+              <div className="w-full h-full mx-auto border border-gray-300 rounded-xl shadow-lg shadow-gray-300 overflow-hidden ">
                 <div className="w-full flex justify-between items-center mb-4 bg-gray-900 text-white p-2 sm:p-3 lg:p-4 rounded-tr-xl rounded-tl-xl">
                   <h2 className="text-lg font-semibold">Today</h2>
                   <input
@@ -52,10 +52,10 @@ export default function Layout({ children }: LayoutProps) {
                 </div>
 
                 <div
-                  className="overflow-auto max-h-86"
+                  className="overflow-auto max-h-96"
                   style={{ scrollbarWidth: "none" }}
                 >
-                  <table className="text-sm min-w-full table whitespace-nowrap">
+                  <table className="text-sm min-w-full h-full table whitespace-nowrap">
                     <thead className="sticky top-0 bg-white z-10 px-4">
                       <tr className="border-b p-3 border-gray-300 text-left text-gray-700 font-medium">
                         <th className="max-lg:px-4 py-3 sm:pl-4">Full Name</th>

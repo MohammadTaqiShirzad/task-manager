@@ -38,18 +38,26 @@ const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
       className: "sm:rounded-tr-xl sm:rounded-br-xl",
     },
   ];
+
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
-  // console.log(selectedValue);
+  const selectedOption = stackOptions.find(
+    (option) => option.value === selectedValue
+  );
+
+  console.log("selected", selectedValue);
 
   return (
     <div>
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="w-full border border-gray-500 rounded-xl px-4 py-2.5 sm:py-3 text-sm text-gray-700 text-start hover:bg-gray-950/10 cursor-pointer flex items-center justify-between"
+        className="w-full border border-gray-300 rounded-xl px-4 py-2.5 sm:py-3 text-sm text-gray-700 text-start hover:bg-gray-950/10 cursor-pointer flex items-center justify-between"
       >
-        <span>Chose your stack</span> <GoArrowRight className="text-xl ml-4" />
+        <span className={selectedValue ? "text-gray-500" : "text-gray-500"}>
+          {selectedOption?.label ?? "Choose your stack"}
+        </span>
+        <GoArrowRight className="text-xl ml-4" />
       </button>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
@@ -70,7 +78,7 @@ const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
                       What's Your Field?
                     </h1>
                     <p className="text-gray-800">
-                      Choose your area to get started.
+                      {selectedValue ? selectedValue : "Select mentor"}
                     </p>
                   </div>
                   <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
@@ -84,8 +92,11 @@ const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
                             setStack(option.value);
                           }}
                           className={`${cn(
-                            "border border-gray-500 rounded-none px-3 py-2 text-sm text-gray-800 hover:bg-gray-950/10 cursor-pointer flex items-center gap-1",
-                            option.className
+                            "border border-gray-300 rounded-none px-3 py-2 text-sm text-gray-800 hover:bg-gray-950/10 cursor-pointer flex items-center gap-1",
+                            option.className,
+                            selectedValue === option.value
+                              ? "bg-gray-600 text-white"
+                              : "bg-white text-gray-600 border-gray-300 hover:bg-gray-950/10"
                           )}`}
                         >
                           <GoCheckCircle />
@@ -100,7 +111,6 @@ const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    setSelectedValue(selectedValue);
                     setOpen(false);
                   }}
                   className="w-2/3 sm:w-1/3 mx-auto text-gray-700 border border-gray-500 rounded-xl bg-[#D0E8FF] px-3 py-1.5 text-sm  shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2 flex items-center justify-center gap-1"

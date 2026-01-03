@@ -97,7 +97,7 @@ const SignUp = () => {
             encType="multipart/form-data"
             className="w-4/5 sm:w-2/4 md:w-1/3 flex flex-col gap-2 sm:gap-4 relative"
           >
-            <div className="bg-gray-50 size-18 sm:size-20 md:size-22 mx-auto text-center border border-gray-500 rounded-full outline-none cursor-pointer relative flex justify-center items-center">
+            <div className="bg-gray-50 size-18 sm:size-20 md:size-22 mx-auto text-center border border-gray-300 rounded-full outline-none cursor-pointer relative flex justify-center items-center">
               {previewUrl ? (
                 <img
                   src={previewUrl ?? "/images/"}
@@ -107,7 +107,7 @@ const SignUp = () => {
               ) : (
                 <IoPersonOutline className="size-10 text-gray-400 " />
               )}
-              <div className="size-7 sm:size-8 absolute left-11 top-12 sm:left-12 sm:top-14 md:left-14 md:top-16 shrink-0 inset-0 flex items-center justify-center border border-gray-500 rounded-full bg-gray-400 bg-[url('/images/gallery-edit.svg')]  bg-no-repeat bg-center hover:opacity-100 transition-opacity">
+              <div className="size-7 sm:size-8 absolute left-11 top-12 sm:left-12 sm:top-14 md:left-14 md:top-16 shrink-0 inset-0 flex items-center justify-center border border-gray-300 rounded-full bg-gray-400 bg-[url('/images/gallery-edit.svg')]  bg-no-repeat bg-center hover:opacity-100 transition-opacity">
                 <input
                   onChange={(e) => {
                     handleImageChange(e);
@@ -126,7 +126,7 @@ const SignUp = () => {
               name="name"
               id="name"
               placeholder="Full Name"
-              className="w-full border border-gray-500 mt-2 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              className="w-full border border-gray-300 mt-2 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
             />
             <input
               onChange={handleChangeValue}
@@ -134,7 +134,7 @@ const SignUp = () => {
               name="email"
               id="email"
               placeholder="E-mail"
-              className="w-full border border-gray-500 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
             />
             <input
               onChange={(e) => {
@@ -146,7 +146,7 @@ const SignUp = () => {
               id="password"
               value={password}
               placeholder="Password"
-              className="w-full border border-gray-500 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
             />
             <span
               onChange={handlePasswordChange2}
@@ -165,7 +165,7 @@ const SignUp = () => {
               id="passwordConfirm"
               value={confirmPassword}
               placeholder="Confirm Password"
-              className="w-full border border-gray-500 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
             />
             <span
               className="size-5 absolute right-3 top-63 sm:right-4 sm:top-79 md:right-3 md:top-82 text-gray-600 cursor-pointer "
@@ -179,7 +179,7 @@ const SignUp = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="mx-auto w-1/2 mt-2 py-1.5 sm:py-2 border border-gray-500 rounded-xl cursor-pointer hover:bg-gray-200 text-sm text-gray-600"
+              className="mx-auto w-1/2 mt-2 py-1.5 sm:py-2 border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-200 text-sm text-gray-600"
             >
               Sign up
             </button>

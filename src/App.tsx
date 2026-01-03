@@ -15,6 +15,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Dashboard from "./pages/Dashboard";
 import MyTask from "./pages/MyTask";
+import NotFound from "./pages/NotFound";
 
 import { useLoginUser } from "./utils/authContext";
 
@@ -46,6 +47,7 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="*" element={<NotFound />} />
 
         {/* protected routes */}
         <Route element={<ProtectedLayout />}>

@@ -14,7 +14,7 @@ const Welcome = () => {
         {isLoginedIn ? (
           <Link
             to="/dashboard"
-            className="w-[250px] text-gray-700 py-2 px-4 text-sm text-center border border-gray-500 rounded-xl cursor-pointer hover:bg-gray-200"
+            className="w-[250px] text-gray-700 py-2 px-4 text-sm text-center border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-200"
           >
             Go to Dashboard
           </Link>
@@ -22,13 +22,13 @@ const Welcome = () => {
           <div className="flex flex-col gap-4">
             <Link
               to="/signin"
-              className="w-[250px] text-gray-700 py-2 px-4 text-sm text-center border border-gray-500 rounded-xl cursor-pointer hover:bg-gray-200"
+              className="w-[250px] text-gray-700 py-2 px-4 text-sm text-center border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-200"
             >
               Sign in
             </Link>
             <Link
               to="/signup"
-              className="w-[250px] text-gray-700 py-2 px-4 text-sm text-center border border-gray-500 rounded-xl cursor-pointer hover:bg-gray-200"
+              className="w-[250px] text-gray-700 py-2 px-4 text-sm text-center border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-200"
             >
               Sign up
             </Link>

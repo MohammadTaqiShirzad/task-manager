@@ -1,4 +1,3 @@
-import React from "react";
 import { LuSearch } from "react-icons/lu";
 import { useSearch } from "../utils/search-context";
 
@@ -6,7 +5,7 @@ const Search = () => {
   const { query, setQuery } = useSearch();
 
   return (
-    <div className="w-full border border-gray-500 rounded-xl py-1 px-4 lg:py-2 shadow-md shadow-gray-300 flex items-center gap-3">
+    <div className="w-full border border-gray-300 rounded-xl py-1 px-4 lg:py-2 shadow-md shadow-gray-300 flex items-center gap-3">
       <LuSearch />
       <input
         type="text"

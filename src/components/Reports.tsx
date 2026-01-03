@@ -3,6 +3,7 @@ import { getReports } from "../utils/Api";
 import { useDate } from "../utils/date-context";
 import { SearchContext } from "../utils/search-context";
 import CreateReport from "./CreateReport";
+import LoaderReport from "./LoaderReport";
 
 
 export type UserRef = {
@@ -54,7 +55,7 @@ const Reports = () => {
 
   const searchCtx = useContext(SearchContext);
 
-  if (loading) return <p className="p-4">Loading reports...</p>;
+  if (loading) return <LoaderReport />;
   if (error) return <p className="p-4 text-red-500">{error}</p>;
   const q = (searchCtx?.query || "").trim().toLowerCase();
   const filtered = q
@@ -79,9 +80,10 @@ const Reports = () => {
   return (
     <>
       {filtered.length === 0 ? (
-        <tr>
+        <tr className="h-full">
           <td colSpan={7} className="p-4 text-center text-gray-500">
-            No reports found.
+            <span >No reports found.</span>
+            <img src="/images/no-data.svg" alt="" className="w-full h-72"/>
           </td>
         </tr>
       ) : (
