@@ -6,7 +6,7 @@ const LogoutConfirm = () => {
       <div className="w-full h-screen flex justify-center items-center bg-[url('/images/Welcome.png')] bg-no-repeat bg-cover">
         <div className="w-2/3 flex flex-col gap-4 items-center">
           <h3 className="text-3xl text-gray-600 mb-2">You Log Out!</h3>
-          <span className="text-gray-700">
+          <span className="text-gray-600">
             creat a new{" "}
             <Link to="/signup" className="text-blue-700 ">
               account

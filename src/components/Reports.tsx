@@ -82,7 +82,7 @@ const Reports = () => {
       {filtered.length === 0 ? (
         <tr className="h-full">
           <td colSpan={7} className="p-4 text-center text-gray-500">
-            <span >No reports found.</span>
+            <span className="text-lg font-semibold">No reports found.</span>
             <img src="/images/no-data.svg" alt="" className="w-full h-72"/>
           </td>
         </tr>
