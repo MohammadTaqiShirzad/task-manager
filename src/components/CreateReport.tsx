@@ -173,7 +173,7 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                             const formatted = to12HourFormat(e.target.value);
                             setValue((prev) => ({
                               ...prev,
-                              signIn: formatted,
+                              signOut: formatted,
                             }));
                           }}
                           className="w-1/2 outline-0 rounded-lg p-1.5 text-gray-700 text-sm font-medium sm:text-base"
