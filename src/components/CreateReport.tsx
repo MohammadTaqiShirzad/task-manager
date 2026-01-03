@@ -98,9 +98,9 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
     isOpen && (
       <div className="fixed w-screen h-screen top-0 left-0 bg-black/60 flex justify-center items-center z-50 p-4">
         <div className="max-w-7xl min-h-screen mx-auto flex justify-center items-center">
-          <div className="w-full shadow-xl overflow-hidden rounded lg:rounded-2xl ">
+          <div className="w-full z-50 shadow-xl ">
             {/* Header */}
-            <div className="flex justify-between items-center text-white bg-gray-800 py-4 px-6">
+            <div className="flex justify-between items-center rounded-tr-xl rounded-tl-xl text-white bg-gray-800 py-4 px-6">
               <h2 className="text-2xl font-bold">My Report</h2>
               <div className="text-gray-100 flex items-center gap-2">
                 {currentDate}
@@ -113,7 +113,7 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
             </div>
 
             {/* Layout Grid */}
-            <div className="bg-white flex flex-col gap-4 px-6 pt-6">
+            <div className="bg-white rounded-br-xl rounded-bl-xl flex flex-col gap-4 px-6 pt-6">
               <div className="flex flex-col lg:flex-row gap-6 justify-between">
                 <div className="lg:w-1/2  flex flex-col gap-6  lg:border-r-2 border-gray-300 lg:pr-6">
                   {/* Profile */}
@@ -189,7 +189,7 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                         {report.trainer.name}
                       </span>
                     ) : (
-                      <Mentors classes="w-full" setMentor={setMentor} />
+                      <Mentors classes="w-full " setMentor={setMentor} />
                     )}
                   </div>
                 </div>

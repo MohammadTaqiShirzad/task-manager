@@ -44,7 +44,7 @@ export default function Mentors({ classes, setMentor }: MentorsProps) {
     fetchTrainers();
   }, []);
 
-  if (loading) return <p className="p-4">Loading ...</p>;
+  if (loading) return <p className="p-4">Loading...</p>;
   if (error) return <p className="p-4 text-red-500">{error}</p>;
   return (
     <Listbox
