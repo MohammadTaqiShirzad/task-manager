@@ -50,7 +50,7 @@ const MyReports = () => {
   console.log(myReportsData);
   console.log(localStorage.getItem("token"));
 
-  if (loading) return <LoaderReport/>;
+  if (loading) return <LoaderReport />;
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   const q = (searchCtx?.query || "").trim().toLowerCase();
@@ -97,7 +97,7 @@ const MyReports = () => {
       {filtered.length === 0 ? (
         <tr>
           <td colSpan={7} className="p-4 text-center text-gray-500">
-            <span>No my reports found.</span>
+            <span className="font-medium">No my reports found.</span>
             <img src="/images/no-data.svg" alt="" className="w-full h-72" />
           </td>
         </tr>
@@ -141,7 +141,10 @@ const MyReports = () => {
                       ? "opacity-50 cursor-not-allowed"
                       : "hover:bg-gray-200"
                   }`}
-                  onClick={() => handleDelete(row._id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete(row._id);
+                  }}
                 >
                   <RiDeleteBinLine className="text-red-500" />
                 </button>

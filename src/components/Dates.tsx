@@ -8,11 +8,18 @@ function addDays(date: Date, amount: number) {
   d.setDate(d.getDate() + amount);
   return d;
 }
+function getMonday(date: Date) {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  d.setDate(d.getDate() + diff);
+  return d;
+}
 
 const Dates = () => {
   const today = new Date();
 
-  const [startDate, setStartDate] = useState<Date>(addDays(today, -3));
+  const [startDate, setStartDate] = useState<Date>(getMonday(today));
 
   const [selectedDate, setSelectedDate] = useState<Date>(today);
 

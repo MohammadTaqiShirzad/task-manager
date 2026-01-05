@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Mentors from "./Mentors";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { useEffect, useState, type ChangeEvent } from "react";
@@ -101,13 +100,11 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
           <div className="w-full z-50 shadow-xl ">
             {/* Header */}
             <div className="flex justify-between items-center rounded-tr-xl rounded-tl-xl text-white bg-gray-800 py-4 px-6">
-              <h2 className="text-2xl font-bold">My Report</h2>
+              <h2 className="text-xl sm:text-2xl font-bold">My Report</h2>
               <div className="text-gray-100 flex items-center gap-2">
                 {currentDate}
-                <span className="text-2xl cursor-pointer">
-                  <Link to="/calendar">
+                <span className="text-2xl">
                     <IoCalendarNumberOutline />
-                  </Link>{" "}
                 </span>
               </div>
             </div>
@@ -135,11 +132,11 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                   {/* Sign in/out */}
                   <div className="grid grid-cols-2 gap-2  ">
                     <div className="col-span-1 flex justify-center items-center border border-gray-400 p-2 lg:px-4 rounded-tl-lg rounded-bl-lg shadow-md shadow-gray-300 ">
-                      <label className="text-xs sm:text-sm font-semibold border-r border-gray-400 pr-2">
+                      <label className="text-xs sm:text-sm font-semibold border-r text-gray-700 border-gray-400 pr-2">
                         Sign in
                       </label>
                       {report ? (
-                        <span className="px-2 text-sm font-medium text-gray-700">
+                        <span className="w-1/2 px-2 text-xs font-medium text-gray-700 sm:text-sm">
                           {value.signIn}
                         </span>
                       ) : (
@@ -158,11 +155,11 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                       )}
                     </div>
                     <div className="col-span-1 flex justify-center items-center border border-gray-400 p-2 lg:px-4 rounded-tr-xl rounded-br-xl shadow-md shadow-gray-300">
-                      <label className="text-xs whitespace-nowrap sm:text-sm font-semibold border-r border-gray-400 pr-2 ">
+                      <label className="text-xs text-gray-700 whitespace-nowrap sm:text-sm font-semibold border-r border-gray-400 pr-2 ">
                         Sign out
                       </label>
                       {report ? (
-                        <span className="px-2 text-sm font-medium text-gray-700">
+                        <span className="w-1/2 px-2 text-xs sm:text-sm font-medium text-gray-700">
                           {value.signIn}
                         </span>
                       ) : (
@@ -185,7 +182,8 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                   {/* Mentor */}
                   <div className="border border-gray-400 rounded-xl p-2 lg:px-4 text-xs sm:text-base shadow-md shadow-gray-300 flex gap-4 items-center justify-between">
                     {report ? (
-                      <span className="font-medium text-gray-700 p-2">
+                      <span className="font-medium text-gray-700 p-2 text-xs sm:text-sm">
+                        <span className="text-sm">Mentors: </span>
                         {report.trainer.name}
                       </span>
                     ) : (
@@ -196,9 +194,11 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                 <div className=" flex flex-col gap-6 lg:w-1/2">
                   {/* Task Box */}
                   <div className="flex border border-gray-400 shadow-md shadow-gray-300 rounded-xl p-2 lg:px-4">
-                    <label className="font-semibold text-sm">Task:</label>
+                    <label className="font-semibold text-sm text-gray-700">
+                      Task:
+                    </label>
                     {report ? (
-                      <span className="font-medium text-sm text-gray-700 p-2">
+                      <span className="whitespace-break-spaces h-10 lg:h-15 font-medium text-xs sm:text-sm text-gray-700 p-2">
                         {report.task}
                       </span>
                     ) : (
@@ -211,10 +211,12 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                     )}
                   </div>
                   {/* Report Box */}
-                  <div className="flex  border border-gray-400 rounded-xl p-2 lg:px-4 shadow-md shadow-gray-300">
-                    <label className="text-sm font-semibold">Report:</label>
+                  <div className="flex border border-gray-400 rounded-xl p-2 lg:px-4 shadow-md shadow-gray-300">
+                    <label className="text-sm font-semibold text-gray-700">
+                      Report:
+                    </label>
                     {report ? (
-                      <span className="font-medium text-sm text-gray-700 p-2">
+                      <span className="whitespace-break-spaces h-15 lg:h-30 font-medium text-xs sm:text-sm text-gray-700 p-2">
                         {report.report}
                       </span>
                     ) : (

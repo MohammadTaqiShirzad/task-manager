@@ -52,11 +52,11 @@ export default function Layout({ children }: LayoutProps) {
                 </div>
 
                 <div
-                  className="overflow-auto max-h-96"
+                  className="overflow-auto max-h-78 lg:max-h-96"
                   style={{ scrollbarWidth: "none" }}
                 >
                   <table className="text-sm min-w-full h-full table whitespace-nowrap">
-                    <thead className="sticky top-0 bg-white z-10 px-4">
+                    <thead className="sticky top-0 bg-white px-4">
                       <tr className="border-b p-3 border-gray-300 text-left text-gray-700 font-medium">
                         <th className="max-lg:px-4 py-3 sm:pl-4">Full Name</th>
                         <th className="max-lg:px-4">Sign in</th>
