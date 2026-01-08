@@ -102,7 +102,7 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
               <div className="text-gray-100 flex items-center gap-2">
                 {currentDate}
                 <span className="text-2xl">
-                    <IoCalendarNumberOutline />
+                  <IoCalendarNumberOutline />
                 </span>
               </div>
             </div>
@@ -196,7 +196,7 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                       Task:
                     </label>
                     {report ? (
-                      <span className="whitespace-break-spaces h-10 lg:h-15 font-medium text-xs sm:text-sm text-gray-700 p-2">
+                      <span className="whitespace-break-spaces h-10 lg:h-15 font-medium text-xs sm:text-sm text-gray-700 p-2 overflow-y-scroll">
                         {report.task}
                       </span>
                     ) : (
@@ -214,7 +214,7 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                       Report:
                     </label>
                     {report ? (
-                      <span className="whitespace-break-spaces h-15 lg:h-30 font-medium text-xs sm:text-sm text-gray-700 p-2">
+                      <span className="whitespace-break-spaces h-15 lg:h-30 font-medium text-xs sm:text-sm text-gray-700 p-2 overflow-y-scroll">
                         {report.report}
                       </span>
                     ) : (
