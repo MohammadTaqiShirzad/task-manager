@@ -24,7 +24,6 @@ const ProtectedLayout = () => {
   const { hasToken } = useLoginUser();
 
   if (!hasToken) {
-    console.log("hastoken",hasToken)
     return <Navigate to="/signin" replace />;
   }
 

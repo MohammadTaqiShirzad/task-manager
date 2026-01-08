@@ -56,7 +56,6 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
   function setMentor(mentor: string) {
     setValue({ ...value, trainer: mentor });
   }
-  console.log(value);
   const to12HourFormat = (time: string) => {
     if (!time) return "";
 
@@ -84,7 +83,6 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
     } else {
       toast.error("Failed to create report. Please try again.");
     }
-    console.log(res);
   }
 
   const user = localStorage.getItem("user");
@@ -96,7 +94,7 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
   return (
     isOpen && (
       <div className="fixed w-screen h-screen top-0 left-0 bg-black/60 flex justify-center items-center z-50 p-4">
-        <div className="max-w-7xl min-h-screen mx-auto flex justify-center items-center">
+        <div className="max-w-4xl md:w-2xl lg:w-3xl min-h-screen mx-auto flex justify-center items-center">
           <div className="w-full z-50 shadow-xl ">
             {/* Header */}
             <div className="flex justify-between items-center rounded-tr-xl rounded-tl-xl text-white bg-gray-800 py-4 px-6">

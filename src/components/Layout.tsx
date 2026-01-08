@@ -16,7 +16,6 @@ export default function Layout({ children }: LayoutProps) {
   const [open, setOpen] = useState(false);
   const today = new Date().toISOString().split("T")[0];
   const [date, setDate] = useState(today);
-  console.log(date);
   const [query, setQuery] = useState("");
 
   return (

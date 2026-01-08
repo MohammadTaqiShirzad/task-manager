@@ -3,7 +3,6 @@ import { CiBellOn } from "react-icons/ci";
 const Profile = () => {
   const user = localStorage.getItem("user");
   const userData = user ? JSON.parse(user) : null;
-  console.log(userData);
   return (
     <div className="flex gap-8 items-center justify-end ">
       <div className="flex gap-4 items-center">

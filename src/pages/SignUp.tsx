@@ -48,7 +48,6 @@ const SignUp = () => {
     setValue({ ...value, stack: stack });
 
   }
-  console.log("Updated value object:", value);
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -68,7 +67,6 @@ const SignUp = () => {
         formData.append("profilePhoto", profilePhoto);
       }
     const res = await signUp(formData);
-    console.log("🚀 ~ handleSubmit ~ res:", res);
     if (res) {
       localStorage.removeItem("token")
       localStorage.setItem("token", res.token);

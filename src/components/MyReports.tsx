@@ -47,8 +47,6 @@ const MyReports = () => {
 
     fetchReports();
   }, []);
-  console.log(myReportsData);
-  console.log(localStorage.getItem("token"));
 
   if (loading) return <LoaderReport />;
   if (error) return <p className="p-4 text-red-500">{error}</p>;

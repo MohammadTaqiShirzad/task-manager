@@ -24,7 +24,7 @@ const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
     },
     {
       label: "UI/UX Designer",
-      value: "UI/UX Designer",
+      value: "UI/UX designer",
       className: "sm:rounded-tr-xl sm:rounded-br-xl",
     },
     {
@@ -44,8 +44,6 @@ const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
   const selectedOption = stackOptions.find(
     (option) => option.value === selectedValue
   );
-
-  console.log("selected", selectedValue);
 
   return (
     <div>

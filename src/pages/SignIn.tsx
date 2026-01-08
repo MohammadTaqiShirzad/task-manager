@@ -26,7 +26,6 @@ const SignIn = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  console.log(value);
   const navigate = useNavigate();
   const { setHasToken } = useLoginUser();
 
