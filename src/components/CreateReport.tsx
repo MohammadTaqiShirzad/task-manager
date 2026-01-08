@@ -189,40 +189,42 @@ const CreateReport = ({ isOpen, setOpen, report }: CreateReportProps) => {
                     )}
                   </div>
                 </div>
-                <div className=" flex flex-col gap-6 lg:w-1/2">
+                <div className=" flex flex-col gap-2 lg:w-1/2">
                   {/* Task Box */}
-                  <div className="flex border border-gray-400 shadow-md shadow-gray-300 rounded-xl p-2 lg:px-4">
-                    <label className="font-semibold text-sm text-gray-700">
+                  <div className="p-2 lg:px-4">
+                    <label className="block mb-2 font-semibold text-sm text-gray-700">
                       Task:
                     </label>
                     {report ? (
-                      <span className="whitespace-break-spaces h-10 lg:h-15 font-medium text-xs sm:text-sm text-gray-700 p-2 overflow-y-scroll">
+                      <span className="w-full block whitespace-break-spaces h-10 lg:h-15 font-medium text-xs sm:text-sm text-gray-700 p-2 overflow-y-auto border border-gray-400 shadow-md shadow-gray-300 rounded-xl">
                         {report.task}
                       </span>
                     ) : (
                       <textarea
                         name="task"
+                        placeholder="task"
                         value={value.task}
                         onChange={handleChangeValue}
-                        className="w-full h-10 lg:h-15 rounded-lg p-2 outline-none"
+                        className="w-full h-10 lg:h-15 p-2 outline-none border border-gray-400 shadow-md shadow-gray-300 rounded-xl"
                       ></textarea>
                     )}
                   </div>
                   {/* Report Box */}
-                  <div className="flex border border-gray-400 rounded-xl p-2 lg:px-4 shadow-md shadow-gray-300">
-                    <label className="text-sm font-semibold text-gray-700">
+                  <div className="p-2 lg:px-4 ">
+                    <label className=" block mb-2 text-sm font-semibold text-gray-700">
                       Report:
                     </label>
                     {report ? (
-                      <span className="whitespace-break-spaces h-15 lg:h-30 font-medium text-xs sm:text-sm text-gray-700 p-2 overflow-y-scroll">
+                      <span className="block w-full whitespace-break-spaces h-15 lg:h-30 font-medium text-xs sm:text-sm text-gray-700 p-2 overflow-y-auto border border-gray-400 rounded-xl shadow-md shadow-gray-300 ">
                         {report.report}
                       </span>
                     ) : (
                       <textarea
                         name="report"
+                        placeholder="report"
                         value={value.report}
                         onChange={handleChangeValue}
-                        className="w-full h-15 lg:h-30 rounded-lg p-2 outline-none"
+                        className="w-full h-15 lg:h-30 p-2 outline-none border border-gray-400 rounded-xl shadow-md shadow-gray-300"
                       ></textarea>
                     )}
                   </div>
