@@ -29,15 +29,14 @@ const SignIn = () => {
   const navigate = useNavigate();
   const { setHasToken } = useLoginUser();
 
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const res = await signIn(value);
     if (res) {
       localStorage.setItem("token", res.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      setHasToken(true); 
-      navigate("/dashboard"); 
+      setHasToken(true);
+      navigate("/dashboard");
       toast.success("Signed In successfully!");
       navigate("/dashboard");
     } else {
@@ -58,34 +57,40 @@ const SignIn = () => {
           <form
             action={"#"}
             encType="multipart/form-data"
-            className="w-4/5 sm:w-3/5 md:w-2/3 lg:w-1/3 flex flex-col gap-4 relative"
+            className="w-4/5 sm:w-3/5 md:w-2/3 lg:w-1/3 flex flex-col gap-4 "
           >
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="E-mail"
-              onChange={handleChangeValue}
-              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
-            />
-            <input
-              type={showPass ? "text" : "password"}
-              name="password"
-              id="password"
-              value={password}
-              onChange={(e) => {
-                handlePasswordChange(e);
-                handleChangeValue(e);
-              }}
-              placeholder="Password"
-              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm "
-            />
-            <span
-              className="size-6 absolute right-2 top-17 sm:right-4 sm:top-20 mt-0.5 text-gray-500 cursor-pointer"
-              onClick={() => setShowPass(!showPass)}
-            >
-              {showPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
-            </span>
+            <div className="">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                placeholder="E-mail"
+                onChange={handleChangeValue}
+                className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              />
+            </div>
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                name="password"
+                id="password"
+                required
+                value={password}
+                onChange={(e) => {
+                  handlePasswordChange(e);
+                  handleChangeValue(e);
+                }}
+                placeholder="Password"
+                className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm "
+              />
+              <span
+                className="size-6absolute right-4 top-1/2 -translate-y-1/2 mt-0.5 text-gray-500 cursor-pointer"
+                onClick={() => setShowPass(!showPass)}
+              >
+                {showPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
+              </span>
+            </div>
             <button
               type="button"
               onClick={handleSubmit}

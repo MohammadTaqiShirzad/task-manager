@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../utils/Api";
 import { toast } from "sonner";
 import Stacks from "../components/Stacks";
+import { LuLoaderCircle } from "react-icons/lu";
 
 const SignUp = () => {
   const [password, setPassword] = React.useState("");
@@ -17,7 +18,7 @@ const SignUp = () => {
   const handlePasswordChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(e.target.value);
   };
-  const defaultImage = "/images/download.png"
+  const defaultImage = "/images/download.png";
   const [previewUrl, setPreviewUrl] = useState<string | null>(defaultImage);
   const [value, setValue] = useState({
     name: "",
@@ -27,6 +28,14 @@ const SignUp = () => {
     passwordConfirm: "",
   });
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({
+    name: "",
+    email: "",
+    stack: "",
+    password: "",
+    passwordConfirm: "",
+  });
 
   // Handle file input change and create preview URL
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,24 +47,46 @@ const SignUp = () => {
     }
   };
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
     setValue((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [fieldName]: fieldValue,
     }));
+    if (!fieldValue && fieldValue === "") {
+      setErrors({ ...errors, [fieldName]: `${fieldName} is required` });
+    } else {
+      setErrors({ ...errors, [fieldName]: "" });
+    }
+
+    if (fieldName === "passwordConfirm") {
+      if (fieldValue !== value?.password) {
+        setErrors({ ...errors, passwordConfirm: "passwords do not match!" });
+      }
+    }
   };
 
   function setStack(stack: string) {
     setValue({ ...value, stack: stack });
-
   }
   const navigate = useNavigate();
+  //
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const formData = new FormData();
-    Object.entries(value).forEach(([key, val]) => {
-      if (val) formData.append(key, val);
-    });
+    setIsLoading(true);
+    try {
+      const newErrors: Record<string, string> = {};
+      const formData = new FormData();
+      Object.entries(value).forEach(([key, val]) => {
+        if (val) {
+          formData.append(key, val);
+        } else if (!val || val === "") {
+          newErrors[key] = `${key} is required!`;
+        }
+      });
+      setErrors(newErrors);
+
       if (!profilePhoto) {
         const response = await fetch(defaultImage);
         const blob = await response.blob();
@@ -66,18 +97,25 @@ const SignUp = () => {
       } else {
         formData.append("profilePhoto", profilePhoto);
       }
-    const res = await signUp(formData);
-    if (res) {
-      localStorage.removeItem("token")
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      toast.success("Account created successfully!");
-      navigate("/dashboard");
-    } else {
+      const res = await signUp(formData);
+      if (res) {
+        localStorage.removeItem("token");
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        toast.success("Account created successfully!");
+        navigate("/dashboard");
+      } else {
+        toast.error("Failed to create account. Please try again.");
+      }
+    } catch (err) {
+      console.log(err);
       toast.error("Failed to create account. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
+  console.log(errors);
   return (
     <>
       <div className="w-full mx-auto h-screen bg-[url('/images/Welcome.png')] bg-no-repeat bg-cover object-cover px-4 sm:px-16">
@@ -91,9 +129,8 @@ const SignUp = () => {
             </p>
           </div>
           <form
-            action="#"
             encType="multipart/form-data"
-            className="w-4/5 sm:w-2/4 md:w-1/3 flex flex-col gap-2 sm:gap-4 relative"
+            className="w-4/5 sm:w-2/4 md:w-1/3 flex flex-col gap-2 sm:gap-4"
           >
             <div className="bg-gray-50 size-18 sm:size-20 md:size-22 mx-auto text-center border border-gray-300 rounded-full outline-none cursor-pointer relative flex justify-center items-center">
               {previewUrl ? (
@@ -118,68 +155,111 @@ const SignUp = () => {
                 />
               </div>
             </div>
-            <input
-              onChange={handleChangeValue}
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Full Name"
-              className="w-full border border-gray-300 mt-2 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
-            />
-            <input
-              onChange={handleChangeValue}
-              type="email"
-              name="email"
-              id="email"
-              placeholder="E-mail"
-              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
-            />
-            <input
-              onChange={(e) => {
-                handleChangeValue(e);
-                handlePasswordChange1(e);
-              }}
-              type={showPass ? "text" : "password"}
-              name="password"
-              id="password"
-              value={password}
-              placeholder="Password"
-              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
-            />
-            <span
-              onChange={handlePasswordChange2}
-              className=" absolute right-4 top-50 sm:right-4 sm:top-63 md:right-4 md:top-65 text-gray-600 cursor-pointer"
-              onClick={() => setShowPass(!showPass)}
-            >
-              {showPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
-            </span>
-            <input
-              onChange={(e) => {
-                handleChangeValue(e);
-                handlePasswordChange2(e);
-              }}
-              type={confirmShowPass ? "text" : "password"}
-              name="passwordConfirm"
-              id="passwordConfirm"
-              value={confirmPassword}
-              placeholder="Confirm Password"
-              className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
-            />
-            <span
-              className="size-5 absolute right-3 top-63 sm:right-4 sm:top-79 md:right-3 md:top-82 text-gray-600 cursor-pointer "
-              onClick={() => setConfirmShowPass(!confirmShowPass)}
-            >
-              {confirmShowPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
-            </span>
+            <div>
+              <input
+                onChange={handleChangeValue}
+                type="text"
+                name="name"
+                id="name"
+                required
+                placeholder="Full Name"
+                className="w-full border border-gray-300 mt-2 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              />
+              {errors?.name && (
+                <p className="text-sm text-red-500">{errors?.name}</p>
+              )}
+            </div>
+
+            <div>
+              <input
+                onChange={handleChangeValue}
+                type="email"
+                name="email"
+                id="email"
+                required
+                placeholder="E-mail"
+                className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+              />
+              {errors?.email && (
+                <p className="text-sm text-red-500">{errors?.email}</p>
+              )}
+            </div>
+
+            <div>
+              <div className="relative">
+                <input
+                  onChange={(e) => {
+                    handleChangeValue(e);
+                    handlePasswordChange1(e);
+                  }}
+                  type={showPass ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  required
+                  value={password}
+                  placeholder="Password"
+                  className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none  placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+                />
+                <span
+                  onChange={handlePasswordChange2}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  {showPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                </span>
+              </div>
+              {errors?.password && (
+                <p className="text-sm text-red-500">{errors?.password}</p>
+              )}
+            </div>
+
+            <div>
+              <div className="relative">
+                <input
+                  onChange={(e) => {
+                    handleChangeValue(e);
+                    handlePasswordChange2(e);
+                  }}
+                  type={confirmShowPass ? "text" : "password"}
+                  name="passwordConfirm"
+                  id="passwordConfirm"
+                  required
+                  value={confirmPassword}
+                  placeholder="Confirm Password"
+                  className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
+                />
+                <span
+                  className="size-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer "
+                  onClick={() => setConfirmShowPass(!confirmShowPass)}
+                >
+                  {confirmShowPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                </span>
+              </div>
+              {errors?.passwordConfirm && (
+                <p className="text-sm text-red-500">
+                  {errors?.passwordConfirm}
+                </p>
+              )}
+            </div>
+
             <div>
               <Stacks setStack={setStack} />
+              {errors?.stack && (
+                <p className="text-sm text-red-500">{errors?.stack}</p>
+              )}
             </div>
+
             <button
               type="button"
-              onClick={handleSubmit}
+              onClick={(e) => handleSubmit(e)}
+              disabled={isLoading}
               className="mx-auto w-1/2 mt-2 py-1.5 sm:py-2 border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-200 text-sm text-gray-600"
             >
-              Sign up
+              {isLoading ? (
+                <LuLoaderCircle className="mx-auto animate-spin" />
+              ) : (
+                "Sign up"
+              )}
             </button>
           </form>
           <div className="w-full flex flex-col gap-4 items-center">

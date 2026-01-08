@@ -105,11 +105,11 @@ const Reports = () => {
             >
               <td className="max-lg:px-8 py-3 sm:pl-4 flex items-center gap-2 mr-4 lg:mr-0">
                 <img
-                  src={row.creator.profilePhoto}
+                  src={row.creator?.profilePhoto}
                   alt=""
                   className="size-10 rounded-full"
                 />{" "}
-                <span>{row.creator.name}</span>
+                <span>{row.creator?.name}</span>
               </td>
               <td className="max-sm:px-4 mr-4 lg:mr-0">{row.signIn}</td>
               <td className="max-sm:px-4 mr-4 lg:mr-0">{row.signOut}</td>
