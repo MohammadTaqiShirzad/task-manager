@@ -202,7 +202,7 @@ const SignUp = () => {
                 />
                 <span
                   onChange={handlePasswordChange2}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
+                  className="size-6 absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer"
                   onClick={() => setShowPass(!showPass)}
                 >
                   {showPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
@@ -229,7 +229,7 @@ const SignUp = () => {
                   className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
                 />
                 <span
-                  className="size-5 absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer "
+                  className="size-6 absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer "
                   onClick={() => setConfirmShowPass(!confirmShowPass)}
                 >
                   {confirmShowPass ? <IoEyeOffOutline /> : <IoEyeOutline />}

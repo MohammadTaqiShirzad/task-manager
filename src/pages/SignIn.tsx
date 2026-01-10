@@ -4,6 +4,7 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { toast } from "sonner";
 import { signIn } from "../utils/Api";
 import { useLoginUser } from "../utils/authContext";
+import { LuLoaderCircle } from "react-icons/lu";
 
 type TSignIn = {
   email: string;
@@ -13,6 +14,7 @@ type TSignIn = {
 const SignIn = () => {
   const [password, setPassword] = React.useState("");
   const [showPass, setShowPass] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
@@ -20,27 +22,56 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({
+    email: "",
+    password: "",
+  });
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const fieldValue = e.target.value;
+    const fieldName = e.target.name;
     setValue((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [fieldName]: fieldValue,
     }));
+    if (!fieldValue && fieldValue == "") {
+      setErrors({ ...errors, [fieldName]: `${fieldName} is required` });
+    } else {
+      setErrors({ ...errors, [fieldName]: "" });
+    }
   };
   const navigate = useNavigate();
   const { setHasToken } = useLoginUser();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const res = await signIn(value);
-    if (res) {
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      setHasToken(true);
-      navigate("/dashboard");
-      toast.success("Signed In successfully!");
-      navigate("/dashboard");
-    } else {
+    setIsLoading(true);
+    try {
+      const newErrors: Record<string, string> = {};
+      const formData = new FormData();
+      Object.entries(value).forEach(([key, val]) => {
+        if (val) {
+          formData.append(key, val);
+        } else if (!val || val === "") {
+          newErrors[key] = `${key} is required!`;
+        }
+      });
+      setErrors(newErrors);
+      const res = await signIn(value);
+      if (res) {
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        setHasToken(true);
+        navigate("/dashboard");
+        toast.success("Signed In successfully!");
+        navigate("/dashboard");
+      } else {
+        toast.error("Failed to sign in. Please try again.");
+      }
+    } catch (err) {
+      console.log(err);
       toast.error("Failed to sign in. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -69,34 +100,46 @@ const SignIn = () => {
                 onChange={handleChangeValue}
                 className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm"
               />
+              {errors?.email && (
+                <p className="text-sm text-red-500">{errors?.email}</p>
+              )}
             </div>
-            <div className="relative">
-              <input
-                type={showPass ? "text" : "password"}
-                name="password"
-                id="password"
-                required
-                value={password}
-                onChange={(e) => {
-                  handlePasswordChange(e);
-                  handleChangeValue(e);
-                }}
-                placeholder="Password"
-                className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm "
-              />
-              <span
-                className="size-6absolute right-4 top-1/2 -translate-y-1/2 mt-0.5 text-gray-500 cursor-pointer"
-                onClick={() => setShowPass(!showPass)}
-              >
-                {showPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
-              </span>
+            <div>
+              <div className="relative">
+                <input
+                  type={showPass ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  required
+                  value={password}
+                  onChange={(e) => {
+                    handlePasswordChange(e);
+                    handleChangeValue(e);
+                  }}
+                  placeholder="Password"
+                  className="w-full border border-gray-300 py-2 sm:py-3 px-4 rounded-xl outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm "
+                />
+                <span
+                  className="size-6 absolute right-4 top-1/2 -translate-y-1/2 mt-0.5 text-gray-500 cursor-pointer"
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  {showPass ? <IoEyeOffOutline /> : <IoEyeOutline />}
+                </span>
+              </div>
+              {errors?.password && (
+                <p className="text-sm text-red-500">{errors?.password}</p>
+              )}
             </div>
             <button
               type="button"
               onClick={handleSubmit}
               className="w-1/2 mx-auto text-gray-500 py-1.5 sm:py-2 border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-200 text-sm"
             >
-              Sign in
+              {isLoading ? (
+                <LuLoaderCircle className="mx-auto animate-spin" />
+              ) : (
+                "Sign In"
+              )}
             </button>
           </form>
           <div className="flex flex-col gap-4 items-center">
