@@ -3,7 +3,7 @@ import { GoArrowLeft } from "react-icons/go";
 import { GoCheckCircle } from "react-icons/go";
 import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
-import { cn } from "../utils/cn";
+import { cn } from "../utils/cn.ts";
 
 const Stacks = ({ setStack }: { setStack: (stack: string) => void }) => {
   const stackOptions = [

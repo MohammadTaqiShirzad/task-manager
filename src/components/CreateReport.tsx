@@ -1,9 +1,9 @@
-import Mentors from "./Mentors";
+import Mentors from "./Mentors.tsx";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { useEffect, useState, type ChangeEvent } from "react";
 import { toast } from "sonner";
-import { createReport } from "../utils/Api";
-import type { Report } from "./Reports";
+import { createReport } from "../utils/Api.ts";
+import type { Report } from "./Reports.tsx";
 
 export type CreateReportProps = {
   isOpen: boolean;

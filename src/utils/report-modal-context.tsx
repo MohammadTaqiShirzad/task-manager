@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import type { Report } from "../components/Reports";
+import type { Report } from "../components/Reports.tsx";
 
 type ReportModalContextType = {
   open: boolean;

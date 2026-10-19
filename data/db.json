@@ -1,81 +1,206 @@
 {
   "users": [
     {
-      "id": 1,
-      "profilePhoto": "/images/milr969373561.jpg",
-      "fullName": "Ali Ahmadi",
+      "_id": "u1",
+      "name": "Ali Ahmadi",
+      "email": "ali@maras.com",
+      "password": "123456",
+      "role": "trainer",
+      "stack": "Full-stack Developer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u2",
+      "name": "Jane Smith",
+      "email": "jane@maras.com",
+      "password": "123456",
+      "role": "trainer",
+      "stack": "Front-end Developer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u3",
+      "name": "Michael Brown",
+      "email": "michael@maras.com",
+      "password": "123456",
+      "role": "trainer",
+      "stack": "Back-end Developer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u4",
+      "name": "Sarah Davis",
+      "email": "sarah@maras.com",
+      "password": "123456",
+      "role": "trainer",
+      "stack": "UI/UX designer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u5",
+      "name": "John Doe",
+      "email": "john@maras.com",
+      "password": "123456",
+      "role": "user",
+      "stack": "Front-end Developer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u6",
+      "name": "Alice Johnson",
+      "email": "alice@maras.com",
+      "password": "123456",
+      "role": "user",
+      "stack": "Back-end Developer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u7",
+      "name": "Bob Brown",
+      "email": "bob@maras.com",
+      "password": "123456",
+      "role": "user",
+      "stack": "Full-stack Developer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u8",
+      "name": "Charlie Green",
+      "email": "charlie@maras.com",
+      "password": "123456",
+      "role": "user",
+      "stack": "Mobile",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u9",
+      "name": "Diana White",
+      "email": "diana@maras.com",
+      "password": "123456",
+      "role": "user",
+      "stack": "UI/UX designer",
+      "profilePhoto": "/images/milr969373561.jpg"
+    },
+    {
+      "_id": "u10",
+      "name": "Eva Black",
+      "email": "eva@maras.com",
+      "password": "123456",
+      "role": "user",
+      "stack": "Media",
+      "profilePhoto": "/images/milr969373561.jpg"
+    }
+  ],
+  "reports": [
+    {
+      "_id": "r1",
+      "dayOffset": 0,
       "signIn": "7:00 AM",
-      "signOut": "7:00 PM",
-      "mentor": "Ali Ahmadi",
-      "tutor": "Ali Ahmadi",
-      "tasks": "My report…",
-      "reports": "lorem ipsum dolor sit amet consectetur adipisicing elit."
+      "signOut": "3:00 PM",
+      "task": "Build the sign-in page and wire up form validation.",
+      "report": "Completed the sign-in UI, connected it to the API and added loading and error states.",
+      "creator": "u5",
+      "trainer": "u1",
+      "__v": 0
     },
     {
-      "id": 2,
-      "profilePhoto": "/images/milr969373561.jpg",
-      "fullName": "John Doe",
-      "signIn": "8:00 AM",
-      "signOut": "4:00 PM",
-      "mentor": "Jane Smith",
-      "tutor": "Bob Johnson",
-      "tasks": "Complete the project",
-      "reports": "lorem ipsum dolor sit amet consectetur adipisicing elit."
+      "_id": "r2",
+      "dayOffset": 0,
+      "signIn": "8:15 AM",
+      "signOut": "4:30 PM",
+      "task": "Design the dashboard layout and sidebar navigation.",
+      "report": "Shipped the responsive dashboard grid and refined the sidebar interaction states.",
+      "creator": "u6",
+      "trainer": "u2",
+      "__v": 0
     },
     {
-      "id": 3,
-      "profilePhoto": "/images/milr969373561.jpg",
-      "fullName": "Alice Johnson",
+      "_id": "r3",
+      "dayOffset": 0,
       "signIn": "9:00 AM",
       "signOut": "5:00 PM",
-      "mentor": "Michael Brown",
-      "tutor": "Sarah Davis",
-      "tasks": "Prepare presentation",
-      "reports": "lorem ipsum dolor sit amet consectetur adipisicing elit."
+      "task": "Implement the reports API endpoints and error handling.",
+      "report": "Added GET /reports, POST /reports and DELETE endpoints with proper status codes.",
+      "creator": "u7",
+      "trainer": "u3",
+      "__v": 0
     },
     {
-      "id": 4,
-      "profilePhoto": "/images/milr969373561.jpg",
-      "fullName": "Bob Brown",
+      "_id": "r4",
+      "dayOffset": 0,
       "signIn": "10:00 AM",
       "signOut": "6:00 PM",
-      "mentor": "Alice Johnson",
-      "tutor": "Michael Brown",
-      "tasks": "Review code",
-      "reports": "lorem ipsum dolor sit amet consectetur adipisicing elit."
+      "task": "Prepare onboarding flow wireframes.",
+      "report": "Delivered low-fidelity wireframes for welcome, sign-up and profile completion.",
+      "creator": "u9",
+      "trainer": "u4",
+      "__v": 0
     },
     {
-      "id": 5,
-      "profilePhoto": "/images/milr969373561.jpg",
-      "fullName": "Charlie Green",
-      "signIn": "11:00 AM",
-      "signOut": "7:00 PM",
-      "mentor": "David Wilson",
-      "tutor": "Emily Clark",
-      "tasks": "Finalize report",
-      "reports": "lorem ipsum dolor sit amet consectetur adipisicing elit."
+      "_id": "r5",
+      "dayOffset": -1,
+      "signIn": "7:30 AM",
+      "signOut": "3:30 PM",
+      "task": "Refactor profile component and clean up state.",
+      "report": "Removed unused state, split presentational pieces and improved accessibility labels.",
+      "creator": "u5",
+      "trainer": "u1",
+      "__v": 0
     },
     {
-      "id": 6,
-      "profilePhoto": "/images/milr969373561.jpg",
-      "fullName": "Diana White",
+      "_id": "r6",
+      "dayOffset": -1,
+      "signIn": "8:00 AM",
+      "signOut": "4:00 PM",
+      "task": "Write unit tests for the search context.",
+      "report": "Added coverage for query updates, reset behavior and filtered rendering.",
+      "creator": "u8",
+      "trainer": "u2",
+      "__v": 0
+    },
+    {
+      "_id": "r7",
+      "dayOffset": -2,
+      "signIn": "9:30 AM",
+      "signOut": "5:30 PM",
+      "task": "Investigate reports table performance issues.",
+      "report": "Identified an N+1 lookup and cached trainer/user references to fix it.",
+      "creator": "u6",
+      "trainer": "u3",
+      "__v": 0
+    },
+    {
+      "_id": "r8",
+      "dayOffset": -2,
+      "signIn": "10:15 AM",
+      "signOut": "6:15 PM",
+      "task": "Review mobile layouts with the design team.",
+      "report": "Walked through breakpoints, adjusted spacing and merged the feedback into Figma.",
+      "creator": "u10",
+      "trainer": "u4",
+      "__v": 0
+    },
+    {
+      "_id": "r9",
+      "dayOffset": -3,
+      "signIn": "7:00 AM",
+      "signOut": "3:00 PM",
+      "task": "Set up CI lint and type-check pipeline.",
+      "report": "Configured ESLint, Prettier and TypeScript checks on every pull request.",
+      "creator": "u7",
+      "trainer": "u1",
+      "__v": 0
+    },
+    {
+      "_id": "r10",
+      "dayOffset": 1,
       "signIn": "8:30 AM",
       "signOut": "4:30 PM",
-      "mentor": "James Wilson",
-      "tutor": "Linda Brown",
-      "tasks": "Prepare for meeting",
-      "reports": "lorem ipsum dolor sit amet consectetur adipisicing elit."
-    },
-    {
-      "id": 7,
-      "profilePhoto": "/images/milr969373561.jpg",
-      "fullName": "Eva Black",
-      "signIn": "9:15 AM",
-      "signOut": "5:15 PM",
-      "mentor": "Chris Green",
-      "tutor": "Patricia White",
-      "tasks": "Conduct user research",
-      "reports": "lorem ipsum dolor sit amet consectetur adipisicing elit."
+      "task": "Plan next sprint for the task manager.",
+      "report": "Drafted the backlog, sized the tickets and shared them with the mentors.",
+      "creator": "u9",
+      "trainer": "u2",
+      "__v": 0
     }
   ]
 }

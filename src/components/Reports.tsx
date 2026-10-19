@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import { getReports } from "../utils/Api";
-import { useDate } from "../utils/date-context";
-import { SearchContext } from "../utils/search-context";
-import CreateReport from "./CreateReport";
-import LoaderReport from "./LoaderReport";
+import { getReports } from "../utils/Api.ts";
+import { useDate } from "../utils/date-context.ts";
+import { SearchContext } from "../utils/search-context.ts";
+import CreateReport from "./CreateReport.tsx";
+import LoaderReport from "./LoaderReport.tsx";
 
 
 export type UserRef = {

@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { myReports, deleteReport } from "../utils/Api";
-import { SearchContext } from "../utils/search-context";
-import CreateReport from "./CreateReport";
-import LoaderReport from "./LoaderReport";
+import { myReports, deleteReport } from "../utils/Api.ts";
+import { SearchContext } from "../utils/search-context.ts";
+import CreateReport from "./CreateReport.tsx";
+import LoaderReport from "./LoaderReport.tsx";
 
 export type UserRef = {
   _id: string;

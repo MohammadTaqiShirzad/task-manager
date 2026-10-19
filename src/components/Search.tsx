@@ -1,5 +1,5 @@
 import { LuSearch } from "react-icons/lu";
-import { useSearch } from "../utils/search-context";
+import { useSearch } from "../utils/search-context.ts";
 
 const Search = () => {
   const { query, setQuery } = useSearch();

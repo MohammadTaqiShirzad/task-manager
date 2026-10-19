@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import MyReports from "../components/MyReports";
+import Layout from "../components/Layout.tsx";
+import MyReports from "../components/MyReports.tsx";
 const MyTask = () => {
   return (
     <>

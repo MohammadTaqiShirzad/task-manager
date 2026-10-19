@@ -2,8 +2,8 @@ import React, { useState, type ChangeEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { toast } from "sonner";
-import { signIn } from "../utils/Api";
-import { useLoginUser } from "../utils/authContext";
+import { signIn } from "../utils/Api.ts";
+import { useLoginUser } from "../utils/authContext.tsx";
 import { LuLoaderCircle } from "react-icons/lu";
 
 type TSignIn = {

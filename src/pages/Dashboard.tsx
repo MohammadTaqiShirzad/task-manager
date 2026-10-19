@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import Reports from "../components/Reports";
+import Layout from "../components/Layout.tsx";
+import Reports from "../components/Reports.tsx";
 export default function Dashboard() {
   return (
     <>

@@ -10,8 +10,8 @@ import {
 } from "@headlessui/react";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { BsChevronExpand } from "react-icons/bs";
-import { cn } from "../utils/cn";
-import { trainers } from "../utils/Api";
+import { cn } from "../utils/cn.ts";
+import { trainers } from "../utils/Api.ts";
 
 type Trainer = {
   _id: string;

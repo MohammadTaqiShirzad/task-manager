@@ -2,9 +2,9 @@ import React, { useState, type ChangeEvent } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
-import { signUp } from "../utils/Api";
+import { signUp } from "../utils/Api.ts";
 import { toast } from "sonner";
-import Stacks from "../components/Stacks";
+import Stacks from "../components/Stacks.tsx";
 import { LuLoaderCircle } from "react-icons/lu";
 
 const SignUp = () => {

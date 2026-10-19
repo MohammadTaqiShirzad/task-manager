@@ -7,17 +7,17 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import Loader from "./components/Loader";
-import LogoutConfirm from "./components/LogoutConfirm";
+import Loader from "./components/Loader.tsx";
+import LogoutConfirm from "./components/LogoutConfirm.tsx";
 
-import Welcome from "./pages/Welcome";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
-import Dashboard from "./pages/Dashboard";
-import MyTask from "./pages/MyTask";
-import NotFound from "./pages/NotFound";
+import Welcome from "./pages/Welcome.tsx";
+import SignUp from "./pages/SignUp.tsx";
+import SignIn from "./pages/SignIn.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
+import MyTask from "./pages/MyTask.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
-import { useLoginUser } from "./utils/authContext";
+import { useLoginUser } from "./utils/authContext.tsx";
 
 /* protected layout */
 const ProtectedLayout = () => {

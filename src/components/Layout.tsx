@@ -1,12 +1,12 @@
-import SideBar from "./SideBar";
-import Dates from "./Dates";
+import SideBar from "./SideBar.tsx";
+import Dates from "./Dates.tsx";
 import React, { useState } from "react";
-import Search from "./Search";
+import Search from "./Search.tsx";
 import { BsPlusLg } from "react-icons/bs";
-import Profile from "./Profile";
-import CreateReport from "./CreateReport";
-import { DateContext } from "../utils/date-context";
-import { SearchContext } from "../utils/search-context";
+import Profile from "./Profile.tsx";
+import CreateReport from "./CreateReport.tsx";
+import { DateContext } from "../utils/date-context.ts";
+import { SearchContext } from "../utils/search-context.ts";
 
 type LayoutProps = {
   children: React.ReactNode;

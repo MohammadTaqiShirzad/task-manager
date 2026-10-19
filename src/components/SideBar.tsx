@@ -4,7 +4,7 @@ import { RiHome5Line } from "react-icons/ri";
 import { MdTask } from "react-icons/md";
 import { IoLogOutOutline } from "react-icons/io5";
 import { AiOutlineMenu } from "react-icons/ai";
-import LogOut from "../pages/LogOut";
+import LogOut from "../pages/LogOut.tsx";
 
 export default function SideBar() {
   const sideBarLinks = [
@@ -42,9 +42,9 @@ export default function SideBar() {
         <div className="h-screen w-screen bg-gray-900 rounded-tr-3xl rounded-br-3xl lg:rounded-2xl flex flex-col gap-4 p-4 shadow-md shadow-gray-300 object-cover">
           <div className="w-full mx-auto flex gap-4 items-center justify-center text-white font-semibold border-b py-4 px-8">
             <img
-              src="/images/logo mars-01.png"
+              src="/images/favicon.svg"
               alt=""
-              className=""
+              className="w-20 h-20 rounded-full object-cover"
             />
           </div>
           <ul className="w-full text-white flex flex-col gap-4">
